@@ -10,6 +10,10 @@ public class SaveScore : MonoBehaviour
         public int kills;
     }
 
+    private void Start()
+    {
+        Application.targetFrameRate = 300;
+    }
     public void save(int killcount)
     {
         if (dataTransfer.health == 200)

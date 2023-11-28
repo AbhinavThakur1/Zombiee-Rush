@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -217,11 +216,11 @@ public class SummonZombiee : MonoBehaviour
         {
             wave.text = "Wave:- 8";
         }
-        else if(time > 480 && time < 482)
+        else if (time > 480 && time < 482)
         {
             wave.text = "Wave:- 9";
         }
-        else if(time > 540 && time < 542)
+        else if (time > 540 && time < 542)
         {
             wave.text = "Wave:- 10";
         }

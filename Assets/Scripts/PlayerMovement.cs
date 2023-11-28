@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         Ammocount.text = "Ammo:- "+ ((int)ammo).ToString();
         float inputx = Input.GetAxisRaw("Horizontal");
         float inputy = Input.GetAxisRaw("Vertical");
-        inputDir = orientation.forward * inputy + orientation.right * inputx;
+        inputDir = cm.forward * inputy + cm.right * inputx;
         if (inputDir != Vector3.zero && health > 0)
         {
             AS.enabled = true;

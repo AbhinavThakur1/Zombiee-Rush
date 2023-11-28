@@ -30,7 +30,10 @@ public class ZombieMovement : MonoBehaviour
         AS = GetComponent<AudioSource>();
     }
 
-
+    private void FixedUpdate()
+    {
+        faceTarget();
+    }
     void Update()
     {
         if (health > 0)
@@ -39,7 +42,6 @@ public class ZombieMovement : MonoBehaviour
             navMeshAgent.stoppingDistance = stopingDistance;
             navMeshAgent.speed = 2f;
             float distance = Vector3.Distance(target.position, transform.position);
-            faceTarget();
             if (navMeshAgent.SetDestination(target.position))
             {
                 animator.SetBool("run", true);
@@ -81,7 +83,7 @@ public class ZombieMovement : MonoBehaviour
     {
         if (health > 0)
         {
-            health -= 50;
+            health -= 80;
             animator.SetBool("attack", false);
             animator.SetBool("run", false);
             if (!animator.GetBool("gothit"))
@@ -116,7 +118,7 @@ public class ZombieMovement : MonoBehaviour
                 FindObjectOfType<PlayerMovement>().health = 200;
             }
         }
-        FindObjectOfType<PlayerMovement>().ammo += 50;
+        FindObjectOfType<PlayerMovement>().ammo += 80;
         gameObject.SetActive(false);
     }
 
