@@ -5,48 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class PlayExit : MonoBehaviour
 {
+
     [SerializeField] TMPro.TextMeshProUGUI text;
     [SerializeField] TMPro.TMP_Dropdown dropdown;
-    public int Score = 0; 
+
+    private void Start()
+    {
+        dropdown.onValueChanged.AddListener(checkdropdownvalue);
+        dropdown.value = QualitySettings.GetQualityLevel();
+        text.text = "Most Kills- " + PlayerPrefs.GetInt("kills");
+    }
+
     public void play()
     {
         SceneManager.LoadScene(1);
     }
 
-    private void Update()
+    void checkdropdownvalue(int value)
     {
-        try
-        {
-            int score = FindAnyObjectByType<SaveScore>().Load();
-            text.text = "Most Kills:- " + score.ToString();
-        }
-        catch
-        {
-            text.text = 0.ToString();
-        }
-        if (dropdown.value == 0)
-        {
-            dataTransfer.health = 300;
-        }else if(dropdown.value == 1)
-        {
-            dataTransfer.health = 500;
-        }
-        else if(dropdown.value == 2)
-        {
-            dataTransfer.health = 700;
-        }
-        else if(dropdown.value == 3)
-        {
-            dataTransfer.health = 900;
-        }
-        else if(dropdown.value == 4)
-        {
-            dataTransfer.health =1100;
-        }
+        QualitySettings.SetQualityLevel(value);
     }
 
     public void exit()
     {
         Application.Quit();
     }
+
 }

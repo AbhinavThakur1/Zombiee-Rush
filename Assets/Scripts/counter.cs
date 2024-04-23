@@ -13,8 +13,8 @@ public class counter : MonoBehaviour
     public void countDeath()
     {
         deathcount += 1;
-        text.text = "kills:- " + deathcount.ToString();
-        count.text = "kills:- " + deathcount.ToString();
-        countt.text = "kills:- " + deathcount.ToString();
+        text.text = "kills- " + deathcount.ToString();
+        count.text = "kills- " + deathcount.ToString();
+        countt.text = "kills- " + deathcount.ToString();
     }
 }

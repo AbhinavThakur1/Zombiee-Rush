@@ -23,7 +23,7 @@ public class ZombieMovement : MonoBehaviour
 
     void Start()
     {
-        health = dataTransfer.health;
+        health = 100 + (50 * (new SummonZombies().goingby / 60));
         navMeshAgent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
@@ -36,7 +36,11 @@ public class ZombieMovement : MonoBehaviour
     }
     void Update()
     {
-        if (health > 0)
+        if(Vector3.Distance(transform.position , target.transform.position) > 35f)
+        {
+            Destroy(gameObject);
+        }
+        else if (health > 0)
         {
             animator.SetBool("idle", true);
             navMeshAgent.stoppingDistance = stopingDistance;
@@ -102,7 +106,7 @@ public class ZombieMovement : MonoBehaviour
     public void playattacksound()
     {
         AS.PlayOneShot(attack);
-        FindObjectOfType<PlayerMovement>().health -= 20;
+        FindObjectOfType<PlayerMovementPc>().health -= 20;
     }
 
     public void playgothitsound() => AS.PlayOneShot(damaged);
@@ -110,16 +114,16 @@ public class ZombieMovement : MonoBehaviour
     public void disappear()
     {
         FindAnyObjectByType<counter>().countDeath();
-        if (FindObjectOfType<PlayerMovement>().health < 200)
+        if (FindObjectOfType<PlayerMovementPc>().health < 200)
         {
-            FindObjectOfType<PlayerMovement>().health += 50;
-            if(FindObjectOfType<PlayerMovement>().health > 200)
+            FindObjectOfType<PlayerMovementPc>().health += 50;
+            if(FindObjectOfType<PlayerMovementPc>().health > 200)
             {
-                FindObjectOfType<PlayerMovement>().health = 200;
+                FindObjectOfType<PlayerMovementPc>().health = 200;
             }
         }
-        FindObjectOfType<PlayerMovement>().ammo += 80;
-        gameObject.SetActive(false);
+        FindObjectOfType<PlayerMovementPc>().ammo += 80;
+        Destroy(gameObject);
     }
 
 }
