@@ -10,8 +10,8 @@ public class PlayerMovementPc : MonoBehaviour
     public Transform cameraPos;
     public Transform cm;
     public Transform player;
-    public float health;
-    public float ammo;
+    public float health = 200;
+    public float ammo = 499;
     public GameObject HitEffect;
     public GameObject muzzleFire;
     public Canvas menu;
@@ -67,7 +67,7 @@ public class PlayerMovementPc : MonoBehaviour
         {
             AS.enabled = false;
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Time.timeScale != 0)
         {
             attackcontinue = true;
         }else if (Input.GetMouseButtonUp(1))

@@ -23,7 +23,14 @@ public class ZombieMovement : MonoBehaviour
 
     void Start()
     {
-        health = 100 + (50 * (new SummonZombies().goingby / 60));
+        if ((new SummonZombies().goingby / 60) >= 27 )
+        {
+            health = 140 + (70 * 27); 
+        }
+        else
+        {
+            health = 140 + (70 * (new SummonZombies().goingby / 60));
+        }
         navMeshAgent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
@@ -87,7 +94,7 @@ public class ZombieMovement : MonoBehaviour
     {
         if (health > 0)
         {
-            health -= 80;
+            health -= 70;
             animator.SetBool("attack", false);
             animator.SetBool("run", false);
             if (!animator.GetBool("gothit"))
@@ -116,13 +123,13 @@ public class ZombieMovement : MonoBehaviour
         FindAnyObjectByType<counter>().countDeath();
         if (FindObjectOfType<PlayerMovementPc>().health < 200)
         {
-            FindObjectOfType<PlayerMovementPc>().health += 50;
+            FindObjectOfType<PlayerMovementPc>().health += 60;
             if(FindObjectOfType<PlayerMovementPc>().health > 200)
             {
                 FindObjectOfType<PlayerMovementPc>().health = 200;
             }
         }
-        FindObjectOfType<PlayerMovementPc>().ammo += 80;
+        FindObjectOfType<PlayerMovementPc>().ammo += 77;
         Destroy(gameObject);
     }
 

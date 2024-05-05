@@ -13,7 +13,7 @@ public class SummonZombies : MonoBehaviour
     [SerializeField] Transform player;
     int spawnzombie;
     float time;
-    public int goingby = 0;
+    public int goingby = 60;
 
     void Update()
     {
