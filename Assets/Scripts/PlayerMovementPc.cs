@@ -60,8 +60,8 @@ public class PlayerMovementPc : MonoBehaviour
         if (inputDir != Vector3.zero && health > 0)
         {
             AS.enabled = true;
-            rb.AddForce(inputDir.normalized * speed * 10f, ForceMode.Force);
-            rb.drag = groundDrag;
+            rb.AddForce(inputDir.normalized * speed * 400f * Time.deltaTime, ForceMode.Force);
+            rb.linearDamping = groundDrag;
         }
         else
         {
